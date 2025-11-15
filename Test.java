@@ -4,7 +4,7 @@ package Testing;
  * The Test class tests the game board for the Score Four game.
  * It ensures the different classes work in synergy.
  * You can add, remove, and request moves via text commands.
- *
+ * Files are part of a larger team project
  * Updated to use AI and launch GUI mode.
  * @author: Adesoye Oyeyiola
  * @Student Id:230164785
@@ -24,7 +24,7 @@ public class Test {
     public static void main(String[] args) {
         startTesting();
     }
-
+// tests different commands via the console
     public static void startTesting() {
         Scanner scanner = new Scanner(System.in);
         board = new Board();
@@ -67,7 +67,7 @@ public class Test {
             }
         }
     }
-
+// Splits the add command to enable the program make sense of the String of words inputted
     private static void handleAddCommand(String command) {
         command = command.replace(".", "");
         String[] parts = command.split(" ");
@@ -78,7 +78,7 @@ public class Test {
                 String location = parts[4];
                 int peg = locationToPeg(location.charAt(0));
                 int row = Integer.parseInt(location.substring(1)) - 1;
-
+// Checks if peg is full and only plays if peg is not
                 if (board.getHeight(row, peg) < 4) {
                     board.makeMove(row, peg, color);
                     System.out.println("Done.");
@@ -96,7 +96,7 @@ public class Test {
             System.out.println("Invalid command format.");
         }
     }
-
+// Handles the remove command
     private static void handleRemoveCommand(String command) {
         command = command.replace(".", "");
         String[] parts = command.split(" ");
@@ -121,7 +121,7 @@ public class Test {
             System.out.println("Invalid command format.");
         }
     }
-
+// handles the get move command
     private static void handleGetMoveCommand(String command) {
         try {
             Position color = command.contains("black") ? Position.BLACK : Position.WHITE;
@@ -147,7 +147,7 @@ public class Test {
         char pegLetter = (char) ('A' + peg);
         return pegLetter + Integer.toString(row + 1);
     }
-
+// Shows the board in a linear fashion
     private static void showBoard() {
         for (int row = 0; row < 4; row++) {
             for (int peg = 0; peg < 4; peg++) {
@@ -162,7 +162,7 @@ public class Test {
             }
         }
     }
-
+// Draws a 2D board showing the current state of the board
     private static void drawBoard() {
         for (int height = 3; height >= 0; height--) {
             System.out.println("Layer " + (height + 1) + ":");
