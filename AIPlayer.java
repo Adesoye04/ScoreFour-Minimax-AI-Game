@@ -12,7 +12,7 @@ import java.util.Random;
  * Files are part of a larger team project
  * @author Adesoye Oyeyiola and Rayan Rakib
  * @studentID 230164785 and 230162489
- * All code that is commented on is solely the work of Adesoye Oyeyiola
+ * All code that is commented on is the work of Adesoye Oyeyiola
  */
 
 public class AIPlayer extends Player {
@@ -34,13 +34,16 @@ public class AIPlayer extends Player {
         this.difficulty = difficulty;
         this.random = new Random();
     }
-/** Created a method that picks the logic the AI follows
- * based on the difficulty picked. Easy difficulty picks Random moves out of the set
- * of available moves about eighty percent of the time while the Medium difficulty picks
- * random moves about thirty percent of the time. In all places where random moves are not picked, the AI follows
- * the heurestics set. 
- * */
-
+/**
+ * Selects the move-generation strategy based on the chosen difficulty.
+ * EASY: plays a random move about 80% of the time.
+ * MEDIUM: plays a random move about 30% of the time.
+ * Otherwise, uses the heuristic-based minimax search.
+ * Returns the best move available from the given game state.
+ *
+ * @param state the current game state
+ * @return a two-element array [peg, level] representing the chosen move
+ */
     public int[] getBestMove(GameState state) {
         List<int[]> availableMoves = state.getAvailableMoves();
 
@@ -84,8 +87,9 @@ public class AIPlayer extends Player {
             board.makeMove(move[0], move[1], beadColor);
         }
     }
-/** Creates a minimax tree which assigns values to moves. The move with the highest 
- *  value here is considered the best move
+/**
+ * Evaluates the game tree using minimax with alpha–beta pruning.
+ * The move leading to the highest score for the AI is considered the best.
  */
     private int minimax(GameState state, int depth, int alpha, int beta, boolean maximizingPlayer) {
         if (depth == 0 || state.isGameOver())
